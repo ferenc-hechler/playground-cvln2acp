@@ -1,4 +1,4 @@
-# Testproject
+# Einführung Programmieraufgabe
 
 Für eine gegebene Zahl `N` berechne das doppelte `2*N`.
 
