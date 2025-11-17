@@ -185,7 +185,7 @@ int main()
         {0, 0}, {2, 4}, {2025, 4050}
     };
     
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < 3; i++) {
         unsigned int N = tests[i].input;
         unsigned int check = tests[i].check;
         unsigned int result = loesung(N);
@@ -223,6 +223,7 @@ function loesung(N) {
 
     return result;
 }
+
 
 // ------------------------------------------------------ //
 // ---------- AB HIER DEN CODE NICHT VERÄNDERN ---------- //
@@ -287,7 +288,7 @@ class Program
             int N = INPUTS[i];
             int check = CHECKS[i];
             int result = Loesung(N);
-            int chk = (N.ToString() + result.ToString()).GetHashCode();
+            // int chk = (N.ToString() + result.ToString()).GetHashCode();
             
             if (result == check) 
             {
@@ -312,8 +313,8 @@ class Program
 package main
 
 import (
-	"crypto/md5"
-	"encoding/binary"
+	// "crypto/md5"
+	// "encoding/binary"
 	"fmt"
 	"os"
 	"time"
@@ -334,14 +335,14 @@ func loesung(N int) int {
 
 func main() {
 	INPUTS := []int{0, 2, 2025}
-	CHECKS := []uint32{0, 4, 4050}
+	CHECKS := []int{0, 4, 4050}
 
 	for i, N := range INPUTS {
 		check := CHECKS[i]
 		result := loesung(N)
 		
-		hash := md5.Sum([]byte(fmt.Sprintf("%d%d", N, result)))
-		chk := binary.LittleEndian.Uint32(hash[:4])
+		// hash := md5.Sum([]byte(fmt.Sprintf("%d%d", N, result)))
+		// chk := binary.LittleEndian.Uint32(hash[:4])
 		
 		if result == check {
 			fmt.Printf("RICHTIG: Das Doppelte von %d ist %d\n", N, result)
@@ -470,7 +471,7 @@ fun loesung(N: Int): Int {
 
 fun main(args: Array<String>) {
     val INPUTS = listOf(0, 2, 2025)
-    val CHECKS = listOf(0, 4L, 4050L)
+    val CHECKS = listOf(0, 4, 4050)
     
     for (i in INPUTS.indices) {
         val N = INPUTS[i]
