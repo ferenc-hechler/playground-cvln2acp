@@ -43,7 +43,7 @@ for N, check in zip(INPUTS, CHECKS):
     chk = hashlib.md5(f"{N}{result}".encode()).digest()
     chk = (((chk[3]<<8)+chk[2]<<8)+chk[1]<<8)+chk[0]
     #print(chk)
-    if chk == check:
+    if result == check:
         print(f'RICHTIG: Das Doppelte von {N} ist {result}')
     else:
         print(f'FALSCH: Das Doppelte von {N} ist nicht {result}', file=sys.stderr)
@@ -84,7 +84,7 @@ public class Main {
         int result = loesung(N);
         int chk = (Integer.toString(N)+Integer.toString(result)).hashCode();
         // System.out.println(chk);
-        if (chk == check) {
+        if (result == check) {
             System.out.println("RICHTIG: Das Doppelte von "+N+" ist "+result);
         }
         else {
@@ -132,7 +132,7 @@ int main(void) {
         unsigned result = loesung(N);
         srand(tests[i].input + result);
         unsigned chk = rand();
-        if (chk == check) {
+        if (result == check) {
             printf("RICHTIG: Das Doppelte von %u ist %u\n", N, result);
         } else {
             // fprintf(stderr, "FALSCH: Das Doppelte von %u ist nicht %u (%u)\n", N, result, chk);
@@ -191,7 +191,7 @@ int main()
         unsigned int result = loesung(N);
         srand(tests[i].input + result);
         unsigned int chk = rand();
-        if (chk == check) {
+        if (result == check) {
             cout << "RICHTIG: Das Doppelte von " << N << " ist " << result << endl;
         } else {
             cerr << "FALSCH: Das Doppelte von " << N << " ist nicht " << result << endl;
