@@ -1,9 +1,495 @@
-# Welcome!
+# Testproject
 
-This Kotlin template lets you get started quickly with a simple one-page playground.
+Für eine gegebene Zahl `N` berechne das doppelte `2*N`.
+
+Das doppelte wird berechnet, indem die gegebene Zahl N mit 2 multipliziert wird.  
+Zum Beispiel: das doppelte von `2025` ist `4050`, da `2*2025 = 4050` ist.
+
+Implementiere die Methode `loesung(N)` im Code unten in der Programmiersprache Deiner Wahl 
+und klicke anschliessend den "Run" Button unter dem Code um die Testfälle laufen zu lassen.
+
+**Bedingungen:**  
+0 ≤ N ≤ 1000000000
+
+
+
+## PYTHON
+
+
+```python runnable
+
+def loesung(N:int):
+    # ----------------------------------- #
+    # - TODO: FÜGE DEINEN CODE HIER EIN - #
+    # ----------------------------------- #
+    result = N
+
+    return result
+
+
+# ------------------------------------------------------ #
+# ---------- AB HIER DEN CODE NICHT VERÄNDERN ---------- #
+# ------------------------------------------------------ #
+
+INPUTS = [0, 2, 2025]
+CHECKS = [0, 4, 4050]
+
+import sys
+import hashlib
+from datetime import datetime, timedelta
+
+for N, check in zip(INPUTS, CHECKS):
+    result = loesung(N)
+    chk = hashlib.md5(f"{N}{result}".encode()).digest()
+    chk = (((chk[3]<<8)+chk[2]<<8)+chk[1]<<8)+chk[0]
+    #print(chk)
+    if chk == check:
+        print(f'RICHTIG: Das Doppelte von {N} ist {result}')
+    else:
+        print(f'FALSCH: Das Doppelte von {N} ist nicht {result}', file=sys.stderr)
+        sys.exit(1)
+        
+print("------------------------------------------------------------")
+print(f"ERFOLG: Gratulation, Du hast die Aufgabe erfolgreich abgeschlossen um {datetime.now()+ timedelta(hours=1)}")
+
+```
+
+## JAVA
+
+```java runnable
+import java.util.Date;
+public class Main {
+  public static int loesung(int N) {
+    /* ----------------------------------- */
+    /* - TODO: FÜGE DEINEN CODE HIER EIN - */
+    /* ----------------------------------- */
+    int result = N;
+
+    return result;
+  }
+
+
+  /* ------------------------------------------------------ */
+  /* ---------- AB HIER DEN CODE NICHT VERÄNDERN ---------- */
+  /* ------------------------------------------------------ */
+
+  public static void main(String[] args) {
+
+    int[] INPUTS = {0, 2, 2025};
+    int[] CHECKS = {0, 4, 4050};
+
+    for (int i=0; i<INPUTS.length; i++) {
+        int N = INPUTS[i];
+        int check = CHECKS[i];
+        int result = loesung(N);
+        int chk = (Integer.toString(N)+Integer.toString(result)).hashCode();
+        // System.out.println(chk);
+        if (chk == check) {
+            System.out.println("RICHTIG: Das Doppelte von "+N+" ist "+result);
+        }
+        else {
+            System.err.println("FALSCH: Das Doppelte von "+N+" ist nicht "+result);
+            System.exit(1);
+        }    
+    }
+    System.out.println("------------------------------------------------------------");
+    System.out.println("ERFOLG: Gratulation, Du hast die Aufgabe erfolgreich abgeschlossen um "+new Date().toString());
+  }
+}
+```
+
+## C
+
+```C runnable
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+static int loesung(unsigned N) {
+    /* ----------------------------------- */
+    /* - TODO: FÜGE DEINEN CODE HIER EIN - */
+    /* ----------------------------------- */
+    unsigned result = N;
+
+    return result;
+}
+
+
+/* ------------------------------------------------------ */
+/* ---------- AB HIER DEN CODE NICHT VERÄNDERN ---------- */
+/* ------------------------------------------------------ */
+
+int main(void) {
+    struct test {
+        unsigned input;
+        unsigned check;
+    };
+    struct test tests[] = {
+        {0, 0}, {2, 4}, {2025, 4050}
+    };
+    for (int i = 0; i < sizeof(tests) / sizeof(struct test); i++) {
+        unsigned N = tests[i].input;
+        unsigned check = tests[i].check;
+        unsigned result = loesung(N);
+        srand(tests[i].input + result);
+        unsigned chk = rand();
+        if (chk == check) {
+            printf("RICHTIG: Das Doppelte von %u ist %u\n", N, result);
+        } else {
+            // fprintf(stderr, "FALSCH: Das Doppelte von %u ist nicht %u (%u)\n", N, result, chk);
+            fprintf(stderr, "FALSCH: Das Doppelte von %u ist nicht %u\n", N, result);
+            return 1;
+        }
+    }
+	time_t now = time(NULL);
+	now += 60 * 60;
+	struct tm *tm = localtime(&now);
+	char buf[1024];
+	strftime(buf, 1023, "------------------------------------------------------------\n"
+		"ERFOLG: Gratulation, Du hast die Aufgabe erfolgreich abgeschlossen um %a %b %d %H:%M:%S", tm);
+	puts(buf);
+    return 0;
+}
+```
+
+## C++
+
+```C++ runnable
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int loesung(unsigned int N) {
+    /* ----------------------------------- */
+    /* - TODO: FÜGE DEINEN CODE HIER EIN - */
+    /* ----------------------------------- */
+    int result = N;
+
+    return result;
+}
+
+/* ------------------------------------------------------ */
+/* ---------- AB HIER DEN CODE NICHT VERÄNDERN ---------- */
+/* ------------------------------------------------------ */
+
+int main() 
+{
+    struct Test {
+        unsigned int input;
+        unsigned int check;
+    };
+    
+    Test tests[] = {
+        {0, 0}, {2, 4}, {2025, 4050}
+    };
+    
+    for (int i = 0; i < 7; i++) {
+        unsigned int N = tests[i].input;
+        unsigned int check = tests[i].check;
+        unsigned int result = loesung(N);
+        srand(tests[i].input + result);
+        unsigned int chk = rand();
+        if (chk == check) {
+            cout << "RICHTIG: Das Doppelte von " << N << " ist " << result << endl;
+        } else {
+            cerr << "FALSCH: Das Doppelte von " << N << " ist nicht " << result << endl;
+            return 1;
+        }
+    }
+    
+    time_t now = time(NULL);
+    now += 60 * 60;
+    struct tm *tm = localtime(&now);
+    char buf[1024];
+    strftime(buf, 1023, "ERFOLG: Gratulation, Du hast die Aufgabe erfolgreich abgeschlossen um %a %b %d %H:%M:%S", tm);
+    cout << "------------------------------------------------------------" << endl;
+    cout << buf << endl;
+    
+    return 0;
+}
+```
+
+
+## Node.JS
+
+```javascript runnable
+function loesung(N) {
+    // ----------------------------------- //
+    // - TODO: FÜGE DEINEN CODE HIER EIN - //
+    // ----------------------------------- //
+    let result = N;
+
+    return result;
+}
+
+// ------------------------------------------------------ //
+// ---------- AB HIER DEN CODE NICHT VERÄNDERN ---------- //
+// ------------------------------------------------------ //
+
+const INPUTS = [0, 2, 2025];
+const CHECKS = [0, 4, 4050];
+
+const crypto = require('crypto');
+
+for (let i = 0; i < INPUTS.length; i++) {
+    const N = INPUTS[i];
+    const check = CHECKS[i];
+    const result = loesung(N);
+    
+    const hash = crypto.createHash('md5').update(`${N}${result}`).digest();
+    const chk = ((((hash[3] << 8) + hash[2]) << 8) + hash[1] << 8) + hash[0];
+    
+    if (chk === check) {
+        console.log(`RICHTIG: Das Doppelte von ${N} ist ${result}`);
+    } else {
+        console.error(`FALSCH: Das Doppelte von ${N} ist nicht ${result}`);
+        process.exit(1);
+    }
+}
+
+console.log("------------------------------------------------------------");
+const now = new Date();
+now.setHours(now.getHours() + 1);
+console.log(`ERFOLG: Gratulation, Du hast die Aufgabe erfolgreich abgeschlossen um ${now}`);
+```
+
+
+## C# 
+
+```C# runnable
+using System;
+
+class Program 
+{
+    static int Loesung(int N) 
+    {
+        /* ----------------------------------- */
+        /* - TODO: FÜGE DEINEN CODE HIER EIN - */
+        /* ----------------------------------- */
+        int result = N;
+
+        return result;
+    }
+
+    /* ------------------------------------------------------ */
+    /* ---------- AB HIER DEN CODE NICHT VERÄNDERN ---------- */
+    /* ------------------------------------------------------ */
+
+    static void Main() 
+    {
+        int[] INPUTS = {0, 2, 2025};
+        int[] CHECKS = {0, 4, 4050};
+
+        for (int i = 0; i < INPUTS.Length; i++) 
+        {
+            int N = INPUTS[i];
+            int check = CHECKS[i];
+            int result = Loesung(N);
+            int chk = (N.ToString() + result.ToString()).GetHashCode();
+            
+            if (chk == check) 
+            {
+                Console.WriteLine($"RICHTIG: Das Doppelte von {N} ist {result}");
+            }
+            else 
+            {
+                Console.Error.WriteLine($"FALSCH: Das Doppelte von {N} ist nicht {result}");
+                Environment.Exit(1);
+            }    
+        }
+        
+        Console.WriteLine("------------------------------------------------------------");
+        Console.WriteLine($"ERFOLG: Gratulation, Du hast die Aufgabe erfolgreich abgeschlossen um {DateTime.Now.AddHours(1)}");
+    }
+}
+```
+
+## GO
+
+```go runnable
+package main
+
+import (
+	"crypto/md5"
+	"encoding/binary"
+	"fmt"
+	"os"
+	"time"
+)
+
+func loesung(N int) int {
+	// ----------------------------------- //
+	// - TODO: FÜGE DEINEN CODE HIER EIN - //
+	// ----------------------------------- //
+	result := N
+
+	return result
+}
+
+// ------------------------------------------------------ //
+// ---------- AB HIER DEN CODE NICHT VERÄNDERN ---------- //
+// ------------------------------------------------------ //
+
+func main() {
+	INPUTS := []int{0, 2, 2025}
+	CHECKS := []uint32{0, 4, 4050}
+
+	for i, N := range INPUTS {
+		check := CHECKS[i]
+		result := loesung(N)
+		
+		hash := md5.Sum([]byte(fmt.Sprintf("%d%d", N, result)))
+		chk := binary.LittleEndian.Uint32(hash[:4])
+		
+		if chk == check {
+			fmt.Printf("RICHTIG: Das Doppelte von %d ist %d\n", N, result)
+		} else {
+			fmt.Fprintf(os.Stderr, "FALSCH: Das Doppelte von %d ist nicht %d\n", N, result)
+			os.Exit(1)
+		}
+	}
+	
+	fmt.Println("------------------------------------------------------------")
+	now := time.Now().Add(time.Hour)
+	fmt.Printf("ERFOLG: Gratulation, Du hast die Aufgabe erfolgreich abgeschlossen um %s\n", now.Format(time.RFC1123))
+}
+```
+
+
+## BASH
+
+```bash runnable
+function loesung {
+	N=$1
+	###################################
+	# TODO: FÜGE DEINEN CODE HIER EIN #
+	###################################
+	result=$N
+
+	echo $result
+}
+
+######################################################
+########## AB HIER DEN CODE NICHT VERÄNDERN ##########
+######################################################
+
+function main {
+	local INPUTS=(0 2 2025)
+	local CHECKS=(0 4 4050)
+	local i=0
+	while test $i -lt ${#INPUTS[@]}; do
+		local N=${INPUTS[$i]}
+		local check=${CHECKS[$i]}
+		local result="$(loesung $N)"
+		local chk=`echo $result:$N | md5sum | sed 's/-//'`
+		chk=$((16#$chk))
+		((chk=(chk>>32)+(chk&((1<<32)-1))))
+		((chk=(chk>>16)+(chk&((1<<16)-1))))
+		if test $chk = $check; then
+			echo "RICHTIG: Das Doppelte von $N ist $result"
+		else
+			echo "FALSCH: Das Doppelte von $N ist nicht $result" >&2
+			exit 1
+		fi
+		((i++))
+	done
+	sec=`date +%s`
+	((sec+=60*60))
+	echo ------------------------------------------------------------
+	echo -n 'ERFOLG: Gratulation, Du hast die Aufgabe erfolgreich abgeschlossen um '
+	date --date=@$sec '+%a %b %d %H:%M:%S'
+}
+
+main
+```
+
+## VB.NET
+
+```vb.net runnable
+Imports System
+
+Public Module Program
+    Function Loesung(N As Integer) As Integer
+        ' ----------------------------------- '
+        ' - TODO: FÜGE DEINEN CODE HIER EIN - '
+        ' ----------------------------------- '
+        Dim result As Integer = N
+
+        Return result
+    End Function
+
+    ' ------------------------------------------------------ '
+    ' ---------- AB HIER DEN CODE NICHT VERÄNDERN ---------- '
+    ' ------------------------------------------------------ '
+
+    Sub Main()
+        Dim INPUTS() As Integer = {0, 2, 2025}
+        Dim CHECKS() As Integer = {0, 4, 4050}
+
+        For i As Integer = 0 To INPUTS.Length - 1
+            Dim N As Integer = INPUTS(i)
+            Dim check As Integer = CHECKS(i)
+            Dim result As Integer = Loesung(N)
+            Dim chk As Integer = (N.ToString() + result.ToString()).GetHashCode()
+            
+            If chk = check Then
+                Console.WriteLine("RICHTIG: Das Doppelte von "+N.ToString()+" ist "+result.ToString())
+            Else
+                Console.Error.WriteLine("FALSCH: Das Doppelte von "+N.ToString()+" ist nicht "+result.ToString())
+                Environment.Exit(1)
+            End If
+        Next
+        
+        Console.WriteLine("------------------------------------------------------------")
+        Console.WriteLine("ERFOLG: Gratulation, Du hast die Aufgabe erfolgreich abgeschlossen um "+DateTime.Now.AddHours(1).ToString())
+    End Sub
+End Module
+```
+
+## Kotlin
+
 
 ```kotlin runnable
+import java.util.Date
+import java.security.MessageDigest
+
+fun loesung(N: Int): Int {
+    // ----------------------------------- //
+    // - TODO: FÜGE DEINEN CODE HIER EIN - //
+    // ----------------------------------- //
+    var result = N
+
+    return result
+}
+
+// ------------------------------------------------------ //
+// ---------- AB HIER DEN CODE NICHT VERÄNDERN ---------- //
+// ------------------------------------------------------ //
+
 fun main(args: Array<String>) {
-    println("Hello, World!")
+    val INPUTS = listOf(0, 2, 2025)
+    val CHECKS = listOf(0, 4L, 4050L)
+    
+    for (i in INPUTS.indices) {
+        val N = INPUTS[i]
+        val check = CHECKS[i]
+        val result = loesung(N)
+        
+        val md = MessageDigest.getInstance("MD5")
+        val hash = md.digest("$N$result".toByteArray())
+        val chk = (((hash[3].toLong() and 0xFF shl 8) + (hash[2].toLong() and 0xFF) shl 8) + (hash[1].toLong() and 0xFF) shl 8) + (hash[0].toLong() and 0xFF)
+        
+        if (chk == check) {
+            println("RICHTIG: Das Doppelte von $N ist $result")
+        } else {
+            System.err.println("FALSCH: Das Doppelte von $N ist nicht $result")
+            System.exit(1)
+        }
+    }
+    
+    println("------------------------------------------------------------")
+    println("ERFOLG: Gratulation, Du hast die Aufgabe erfolgreich abgeschlossen um ${Date(System.currentTimeMillis() + 3600000)}")
 }
 ```
