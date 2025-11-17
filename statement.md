@@ -241,7 +241,7 @@ for (let i = 0; i < INPUTS.length; i++) {
     const hash = crypto.createHash('md5').update(`${N}${result}`).digest();
     const chk = ((((hash[3] << 8) + hash[2]) << 8) + hash[1] << 8) + hash[0];
     
-    if (chk === check) {
+    if (result === check) {
         console.log(`RICHTIG: Das Doppelte von ${N} ist ${result}`);
     } else {
         console.error(`FALSCH: Das Doppelte von ${N} ist nicht ${result}`);
@@ -289,7 +289,7 @@ class Program
             int result = Loesung(N);
             int chk = (N.ToString() + result.ToString()).GetHashCode();
             
-            if (chk == check) 
+            if (result == check) 
             {
                 Console.WriteLine($"RICHTIG: Das Doppelte von {N} ist {result}");
             }
@@ -343,7 +343,7 @@ func main() {
 		hash := md5.Sum([]byte(fmt.Sprintf("%d%d", N, result)))
 		chk := binary.LittleEndian.Uint32(hash[:4])
 		
-		if chk == check {
+		if result == check {
 			fmt.Printf("RICHTIG: Das Doppelte von %d ist %d\n", N, result)
 		} else {
 			fmt.Fprintf(os.Stderr, "FALSCH: Das Doppelte von %d ist nicht %d\n", N, result)
@@ -387,7 +387,7 @@ function main {
 		chk=$((16#$chk))
 		((chk=(chk>>32)+(chk&((1<<32)-1))))
 		((chk=(chk>>16)+(chk&((1<<16)-1))))
-		if test $chk = $check; then
+		if test $result = $check; then
 			echo "RICHTIG: Das Doppelte von $N ist $result"
 		else
 			echo "FALSCH: Das Doppelte von $N ist nicht $result" >&2
@@ -434,7 +434,7 @@ Public Module Program
             Dim result As Integer = Loesung(N)
             Dim chk As Integer = (N.ToString() + result.ToString()).GetHashCode()
             
-            If chk = check Then
+            If result = check Then
                 Console.WriteLine("RICHTIG: Das Doppelte von "+N.ToString()+" ist "+result.ToString())
             Else
                 Console.Error.WriteLine("FALSCH: Das Doppelte von "+N.ToString()+" ist nicht "+result.ToString())
@@ -481,7 +481,7 @@ fun main(args: Array<String>) {
         val hash = md.digest("$N$result".toByteArray())
         val chk = (((hash[3].toLong() and 0xFF shl 8) + (hash[2].toLong() and 0xFF) shl 8) + (hash[1].toLong() and 0xFF) shl 8) + (hash[0].toLong() and 0xFF)
         
-        if (chk == check) {
+        if (result == check) {
             println("RICHTIG: Das Doppelte von $N ist $result")
         } else {
             System.err.println("FALSCH: Das Doppelte von $N ist nicht $result")
